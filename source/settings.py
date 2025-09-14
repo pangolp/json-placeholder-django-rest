@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+THIRD_PARTY_APPS = [
+    'rest_framework',
+]
+
+LOCAL_APPS = [
+    'api',
+]
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -102,11 +112,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-AR'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Argentina/Buenos_Aires'
 
 USE_I18N = True
+
+USE_L10N = True
 
 USE_TZ = True
 
@@ -120,3 +132,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATICFILES_DIRS = [
+    (BASE_DIR / 'static'),
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+}
